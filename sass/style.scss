@@ -1,0 +1,1741 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin-bottom: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  display: inline-block;
+}
+
+span {
+  display: inline-block;
+}
+
+img {
+  vertical-align: middle;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+// ===== Common CSS Ends =====
+
+// ===== Fonts CSS Start =====
+
+@font-face {
+  src: url(../fonts/Amiri-Bold.ttf);
+  font-family: amiri-bold;
+}
+
+@font-face {
+  src: url(../fonts/Amiri-Regular.ttf);
+  font-family: amiri-regular;
+}
+
+@font-face {
+  src: url(../fonts/Montserrat-Bold.ttf);
+  font-family: mont-bold;
+}
+
+@font-face {
+  src: url(../fonts/Montserrat-SemiBold.ttf);
+  font-family: mont-semibold;
+}
+
+@font-face {
+  src: url(../fonts/Montserrat-Medium.ttf);
+  font-family: mont-medium;
+}
+
+@font-face {
+  src: url(../fonts/Montserrat-Regular.ttf);
+  font-family: mont-regular;
+}
+
+@font-face {
+  src: url(../fonts/Pe-icon-7-stroke.ttf);
+  font-family: pe-icon;
+}
+
+// ===== Font CSS Ends =====
+
+// ===== Variables CSS Start =====
+
+$primary-color: #97782a;
+$secondary-color: #c2a760;
+$white: #fff;
+$black: #000;
+$dfx: flex;
+$dib: inline-block;
+
+// ===== Variables CSS End =====
+
+// ===== Extend CSS Start =====
+
+%paragraph {
+  font-family: mont-medium;
+  font-size: 14px;
+  line-height: 26px;
+  color: $black;
+}
+
+%small-header {
+  font-family: mont-bold;
+  font-size: 14px;
+  color: $black;
+}
+
+// ===== Extend CSS End =====
+
+// ===== Mixin CSS Start =====
+
+@mixin transition($s) {
+  -webkit-transition: all linear ($s);
+  -moz-transition: all linear ($s);
+  -ms-transition: all linear ($s);
+  -o-transition: all linear ($s);
+  transition: all linear ($s);
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: ($radius);
+  -moz-border-radius: ($radius);
+  -ms-border-radius: ($radius);
+  -o-border-radius: ($radius);
+  border-radius: ($radius);
+}
+
+// ===== Mixin CSS End =====
+
+// ===== Header Part CSS Start =====
+
+header {
+  padding-top: 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  @include transition(0.3s);
+  .toparea {
+    display: $dfx;
+    .logo {
+      @include transition(0.3s);
+      img {
+        @include transition(0.3s);
+      }
+    }
+    .top-right {
+      display: $dfx;
+      padding-top: 25px;
+      ul {
+        margin-right: 90px;
+        li {
+          display: $dib;
+          margin: 0 25px;
+          font-family: mont-medium;
+          font-size: 14px;
+          color: $white;
+          a {
+            @include transition(0.3s);
+            color: $white;
+            &:hover {
+              color: $secondary-color;
+            }
+          }
+        }
+      }
+    }
+    .humber {
+      .bars {
+        cursor: pointer;
+        span {
+          width: 40px;
+          height: 5px;
+          background: $white;
+          display: block;
+          margin-bottom: 6px;
+          @include transition(0.3s);
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        &:hover {
+          span {
+            background: $secondary-color;
+          }
+        }
+      }
+      .menu {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: url(../images/menu-bg.png) no-repeat center;
+        background-size: cover;
+        @include transition(0.3s);
+        .menu-close {
+          width: 50px;
+          height: 50px;
+          border: 2px solid $secondary-color;
+          text-align: center;
+          position: absolute;
+          top: 50px;
+          right: 110px;
+          cursor: pointer;
+          i {
+            font-family: pe-icon;
+            font-size: 46px;
+            font-weight: bold;
+            color: $white;
+            line-height: 47px;
+          }
+        }
+        .menu-logo {
+          position: absolute;
+          top: 40px;
+          left: 5%;
+        }
+        .menu-item {
+          position: absolute;
+          top: 20%;
+          right: 150px;
+          li {
+            display: block;
+            margin: 15px 0;
+            a {
+              font-size: 28px;
+              position: relative;
+              &:before {
+                position: absolute;
+                content: "";
+                width: 30px;
+                height: 2px;
+                background: $secondary-color;
+                top: 50%;
+                transform: translateY(-50%);
+                left: -90px;
+                opacity: 0;
+                @include transition(0.3s);
+              }
+              &:hover:before {
+                opacity: 1;
+                left: -60px;
+              }
+              &.active {
+                color: $secondary-color;
+              }
+              &.active:before {
+                opacity: 1;
+                left: -60px;
+              }
+            }
+          }
+        }
+        .menu-rest-info {
+          border: 2px solid $primary-color;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          border-left: 0;
+          padding: 50px 100px;
+          box-sizing: border-box;
+          h6 {
+            font-family: mont-semibold;
+            font-size: 18px;
+            color: $white;
+            padding-bottom: 5px;
+          }
+          span {
+            font-family: mont-semibold;
+            font-size: 16px;
+            color: $primary-color;
+          }
+          ul {
+            margin: 20px 0;
+            margin-bottom: 0;
+            li {
+              display: block;
+              margin: 5px 0;
+            }
+          }
+        }
+        &.open-menu {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+  }
+  &.sticky {
+    background: rgba(0, 0, 0, 0.7);
+    padding-top: 0;
+    padding-bottom: 0;
+    .toparea {
+      .logo {
+        transform: translateY(-25px) scale(0.4);
+        height: 120px;
+      }
+      .top-right {
+        padding-top: 45px;
+      }
+    }
+  }
+}
+
+// ===== Header Part CSS End =====
+
+// ===== Banner Part CSS Start =====
+
+#banner {
+  background: url(../images/banner-img.png) no-repeat center;
+  background-size: cover;
+  padding-top: 330px;
+  padding-bottom: 315px;
+  position: relative;
+  .banner-text {
+    span {
+      font-family: amiri-regular;
+      font-size: 64px;
+      color: $white;
+    }
+    h1 {
+      font-family: amiri-bold;
+      font-size: 70px;
+      color: $white;
+      line-height: 55px;
+    }
+  }
+  .banner-shape {
+    position: absolute;
+    width: 100%;
+    bottom: -10px;
+    left: 0;
+    z-index: -9;
+  }
+}
+
+// ===== Banner Part CSS End =====
+
+// ===== Unsere Part CSS Start =====
+
+#unsere {
+  padding-top: 470px;
+  padding-bottom: 100px;
+  margin-top: -165px;
+  position: relative;
+  &:before {
+    background: url(../images/unsere-bg.png) no-repeat left;
+    background-size: cover;
+    position: absolute;
+    content: "";
+    width: 60%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -99;
+  }
+  &:after {
+    background: #eee;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -999;
+  }
+  .unsere-box-main {
+    position: relative;
+    display: block;
+    width: 60%;
+    .unsere-box {
+      position: absolute;
+      top: -440px;
+      left: 100%;
+      width: 460px;
+      background: $white;
+      box-shadow: 0px 0px 20px 0px #ddd;
+      @include border-radius(10px);
+      padding: 30px;
+      box-sizing: border-box;
+      h6 {
+        @extend %small-header;
+        padding-bottom: 10px;
+        padding-top: 20px;
+      }
+      p {
+        @extend %paragraph;
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+.sec-header {
+  margin-bottom: 40px;
+  span {
+    font-family: amiri-regular;
+    font-size: 30px;
+    color: $primary-color;
+    line-height: 25px;
+  }
+  h2 {
+    font-family: amiri-bold;
+    font-size: 36px;
+    color: $primary-color;
+    line-height: 30px;
+    padding: 15px 0;
+  }
+}
+
+// ===== Unsere Part CSS End =====
+
+// ===== Family Part CSS Start =====
+
+#family {
+  background: linear-gradient(to bottom, #eee, #fff);
+  padding-top: 30px;
+  padding-bottom: 150px;
+  position: relative;
+  z-index: -99;
+  .family-left p {
+    @extend %paragraph;
+    padding-bottom: 20px;
+    a {
+      color: $primary-color;
+    }
+  }
+  .family-right ul li {
+    @extend %paragraph;
+    line-height: 22px;
+    i {
+      color: $primary-color;
+    }
+  }
+}
+
+// ===== Family Part CSS End =====
+
+// ===== Plate Part CSS Start =====
+
+#plate {
+  background: url(../images/plate-bg-1.png) no-repeat center;
+  background-size: cover;
+  padding-top: 270px;
+  padding-bottom: 270px;
+  position: relative;
+  margin-bottom: 100px;
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url(../images/plate-bg-2.png) no-repeat center;
+    background-size: cover;
+    top: -130px;
+    left: 0;
+    z-index: -9;
+  }
+  &:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url(../images/plate-bg-3.png) no-repeat center;
+    background-size: cover;
+    top: 130px;
+    right: 0;
+    z-index: -9;
+  }
+  .plate-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .plate-2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .plate-btn {
+    width: 480px;
+    position: absolute;
+    bottom: 160px;
+    left: 0;
+    background: $primary-color;
+    padding: 10px;
+    padding-left: 150px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: $dfx;
+    a {
+      @extend %paragraph;
+      color: $white;
+      padding-left: 20px;
+    }
+  }
+  .sec-header {
+    span {
+      color: $white;
+    }
+    h2 {
+      color: $white;
+    }
+  }
+  .plate-desc {
+    h6 {
+      @extend %small-header;
+      color: $white;
+    }
+    p {
+      @extend %paragraph;
+      color: $white;
+      padding-top: 20px;
+    }
+  }
+}
+
+// ===== Plate Part CSS End =====
+
+// ===== Frame Part CSS Start =====
+
+#frameden {
+  padding: 130px 0;
+  padding-top: 50px;
+  .frame-desc-main {
+    background: #e9e2d2;
+    margin-top: 40px;
+    .frame-slide-main {
+      position: relative;
+      i {
+        width: 50px;
+        height: 40px;
+        color: $white;
+        line-height: 40px;
+        background: #2c190a;
+        display: block;
+        text-align: center;
+        position: absolute;
+        z-index: 9;
+        cursor: pointer;
+      }
+      .left {
+        bottom: -19px;
+        left: -26px;
+      }
+      .right {
+        bottom: -19px;
+        left: 24px;
+      }
+      .frame-slide {
+        border: 2px solid $primary-color;
+        padding: 10px;
+        box-sizing: border-box;
+        transform: scale(1.15);
+        margin-right: 10px;
+      }
+    }
+    .frame-right {
+      padding: 30px;
+      p {
+        @extend %paragraph;
+      }
+      ul {
+        margin: 10px 0;
+        li {
+          @extend %paragraph;
+          line-height: 22px;
+          i {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ===== Frame Part CSS End =====
+
+// ===== Gallery Part CSS Start =====
+
+#gallery {
+  a {
+    display: block;
+    width: 100%;
+    .gal-long {
+      height: 350px;
+    }
+    .gal-short {
+      height: 175px;
+      padding: 10px;
+      padding-top: 0;
+    }
+  }
+}
+
+// ===== Gallery Part CSS End =====
+
+// ===== Friez Part CSS Start =====
+
+#friez {
+  padding: 100px 0;
+  background: url(../images/friez-bg.png) no-repeat center;
+  background-size: cover;
+  .sec-header {
+    h2 {
+      color: $white;
+      padding-top: 0;
+    }
+  }
+  .friez-desc {
+    text-align: center;
+    p {
+      @extend %paragraph;
+      color: $white;
+      padding-bottom: 60px;
+    }
+    h6 {
+      @extend %small-header;
+      color: $white;
+      padding-bottom: 60px;
+      a {
+        color: $white;
+      }
+    }
+  }
+  .friez-item {
+    position: relative;
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, #1f130e);
+      top: 0;
+      left: 0;
+      padding: 30px;
+      box-sizing: border-box;
+      text-align: center;
+      a {
+        @extend %small-header;
+        color: $white;
+        position: absolute;
+        width: 100%;
+        bottom: 30px;
+        left: 0;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+// ===== Friez Part CSS End =====
+
+// ===== Fuchs Part CSS Start =====
+
+#fuchs {
+  padding: 100px 0;
+  position: relative;
+  &:before {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    content: "";
+    background: url(../images/fuchs-bg.png) no-repeat center;
+    background-size: cover;
+    top: 0;
+    left: 0;
+  }
+  &:after {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    content: "";
+    background: linear-gradient(to left, #fff, transparent);
+    top: 0;
+    right: 50%;
+  }
+  .fuchs-bg-2 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    object-fit: cover;
+    z-index: 9;
+  }
+  .sec-header {
+    h2 {
+      padding-top: 0;
+    }
+  }
+  .fuchs-desc {
+    position: relative;
+    z-index: 99;
+    p {
+      @extend %paragraph;
+      padding-bottom: 20px;
+    }
+    ul {
+      li {
+        font-family: mont-semibold;
+        font-size: 22px;
+        &:last-child {
+          font-size: 16px;
+          margin-top: 5px;
+        }
+        a {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// ===== Fuchs Part CSS End =====
+
+// ===== Map Part CSS Start =====
+
+#test {
+  height: 400px;
+}
+
+// ===== Map Part CSS End =====
+
+// ===== Footer Part CSS Start =====
+
+footer {
+  padding: 80px 0;
+  .footer-item {
+    h4 {
+      font-family: amiri-bold;
+      font-size: 22px;
+      color: $primary-color;
+      padding-bottom: 20px;
+    }
+    h6 {
+      @extend %small-header;
+      color: #5a5a5a;
+      line-height: 26px;
+    }
+    ul {
+      margin-top: 10px;
+      li {
+        @extend %paragraph;
+        color: #5a5a5a;
+        a {
+          color: #5a5a5a;
+        }
+      }
+    }
+    p {
+      @extend %paragraph;
+      color: #5a5a5a;
+    }
+    .social {
+      margin-top: 0;
+      li {
+        display: $dib;
+        margin-right: 15px;
+        a {
+          @include transition(0.3s);
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+#cpryt {
+  background: #525251;
+  padding: 40px 0;
+  ul {
+    li {
+      display: $dib;
+      @extend %paragraph;
+      text-transform: uppercase;
+      line-height: 20px;
+      margin-right: 20px;
+      a {
+        color: $white;
+      }
+    }
+  }
+}
+
+// ===== Footer Part CSS End =====
+
+// ===== Xtra Small Devices Responsive Start =====
+
+@media (min-width: 300px) and (max-width: 575.98px) {
+  body {
+    overflow-x: hidden;
+  }
+  header {
+    .toparea {
+      .logo {
+        transform: translate(-64px, -64px) scale(0.6);
+      }
+    }
+    &.sticky {
+      .toparea {
+        .logo {
+          transform: translate(-90px, -25px) scale(0.4);
+          height: 120px;
+        }
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-close {
+    top: 30px;
+    right: 30px;
+  }
+
+  header .toparea .humber .menu .menu-logo {
+    width: 100px;
+    top: 30px;
+    left: 30px;
+    img {
+      width: 100%;
+    }
+  }
+
+  header .toparea .humber .menu .menu-rest-info {
+    display: none;
+  }
+
+  header .toparea .humber .menu .menu-item {
+    text-align: center;
+    top: 150px;
+    right: auto;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-right: 0;
+    li {
+      display: block;
+      margin: 7px 0;
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-item li a:before {
+    width: 20px;
+    left: -60px;
+  }
+
+  header .toparea .humber .menu .menu-item li a:hover:before {
+    left: -35px;
+  }
+
+  header .toparea .humber .menu .menu-item li a.active:before {
+    left: -35px;
+  }
+
+  .sec-header span {
+    font-size: 25px;
+    line-height: 24px;
+  }
+
+  .sec-header h2 {
+    font-size: 30px;
+    line-height: 25px;
+  }
+
+  #banner {
+    padding-top: 250px;
+    padding-bottom: 230px;
+    .banner-text {
+      span {
+        font-size: 36px;
+      }
+      h1 {
+        font-size: 54px;
+      }
+    }
+    .banner-shape {
+      width: 98%;
+      bottom: 34px;
+      transform: rotate(9deg);
+    }
+  }
+
+  #unsere {
+    &:before {
+      width: 100%;
+    }
+    .unsere-box-main {
+      width: 100%;
+      .unsere-box {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        top: 100%;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+      }
+    }
+  }
+
+  #family {
+    padding-top: 540px;
+  }
+
+  #plate {
+    padding-top: 200px;
+    padding-bottom: 270px;
+    .plate-1 {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 60%;
+    }
+    .plate-2 {
+      position: absolute;
+      bottom: -100px;
+      right: 0;
+      width: 60%;
+    }
+    .plate-desc {
+      text-align: center;
+    }
+    .plate-btn {
+      width: 80%;
+      padding-left: 20px;
+      bottom: 150px;
+      .plate-btn-img {
+        display: $dfx;
+        align-items: center;
+        img {
+          width: 30px;
+        }
+      }
+      a {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  #frameden {
+    padding-bottom: 70px;
+    .frame-desc-main {
+      margin-top: 0;
+      .frame-slide-main {
+        .left {
+          bottom: 12px;
+          left: 32%;
+        }
+        .right {
+          bottom: 12px;
+          left: 50%;
+        }
+        .frame-slide {
+          transform: scale(1);
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  #gallery {
+    a {
+      margin-top: 10px;
+      width: auto;
+      .gal-short {
+        padding: 0;
+        object-fit: cover;
+      }
+      .gal-long {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .friez-slide-main {
+    position: relative;
+    .friez-icon {
+      position: absolute;
+      bottom: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      i {
+        font-size: 25px;
+        color: $white;
+        display: $dib;
+        margin: 0 20px;
+      }
+    }
+  }
+
+  #fuchs {
+    padding-bottom: 80px;
+    &:before {
+      width: 100%;
+      height: 350px;
+    }
+    &:after {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(to top, #fff, transparent);
+      top: 0;
+      right: 0%;
+    }
+    .fuchs-desc-main {
+      margin-top: 300px;
+    }
+  }
+
+  footer {
+    padding-top: 60px;
+    .footer-item {
+      text-align: center;
+      h4 {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  #cpryt {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 575px) {
+  #unsere .unsere-box-main .unsere-box {
+    padding-top: 30px;
+  }
+  #family {
+    padding-top: 420px;
+  }
+  #plate {
+    padding-top: 295px;
+    padding-bottom: 393px;
+  }
+
+  element.style {
+    display: block;
+  }
+  #frameden .frame-desc-main .frame-slide-main .left {
+    bottom: 12px;
+    left: 38%;
+  }
+
+  #plate .plate-btn {
+    width: 60%;
+    bottom: 100px;
+  }
+
+  #plate .plate-1 {
+    width: 30%;
+  }
+
+  #plate .plate-2 {
+    width: 30%;
+  }
+
+  #plate {
+    padding-top: 140px;
+    padding-bottom: 200px;
+  }
+}
+
+// ===== Small Devices Responsive Start =====
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  header {
+    .toparea {
+      .logo {
+        transform: translate(-64px, -64px) scale(0.6);
+      }
+    }
+    &.sticky {
+      .toparea {
+        .logo {
+          transform: translate(-90px, -25px) scale(0.4);
+          height: 120px;
+        }
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-close {
+    top: 30px;
+    right: 30px;
+  }
+
+  header .toparea .humber .menu .menu-logo {
+    width: 100px;
+    top: 30px;
+    left: 30px;
+    img {
+      width: 100%;
+    }
+  }
+
+  header .toparea .humber .menu .menu-rest-info {
+    display: none;
+  }
+
+  header .toparea .humber .menu .menu-item {
+    text-align: center;
+    top: 150px;
+    right: auto;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-right: 0;
+    li {
+      display: block;
+      margin: 7px 0;
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-item li a:before {
+    width: 20px;
+    left: -60px;
+  }
+
+  header .toparea .humber .menu .menu-item li a:hover:before {
+    left: -35px;
+  }
+
+  header .toparea .humber .menu .menu-item li a.active:before {
+    left: -35px;
+  }
+
+  #banner {
+    padding-top: 250px;
+    padding-bottom: 230px;
+    .banner-text {
+      span {
+        font-size: 36px;
+      }
+      h1 {
+        font-size: 54px;
+      }
+    }
+    .banner-shape {
+      width: 98%;
+      bottom: 34px;
+      transform: rotate(9deg);
+    }
+  }
+
+  #unsere {
+    &:before {
+      width: 100%;
+    }
+    .unsere-box-main {
+      width: 100%;
+      .unsere-box {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        top: 100%;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+      }
+    }
+  }
+
+  #family {
+    padding-top: 540px;
+  }
+
+  #plate {
+    padding-top: 200px;
+    padding-bottom: 270px;
+    .plate-1 {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 40%;
+    }
+    .plate-2 {
+      position: absolute;
+      bottom: -100px;
+      right: 0;
+      width: 40%;
+    }
+    .plate-desc {
+      text-align: center;
+    }
+    .plate-btn {
+      width: 350px;
+      padding-left: 20px;
+      bottom: 250px;
+      .plate-btn-img {
+        display: $dfx;
+        align-items: center;
+        img {
+          width: 30px;
+        }
+      }
+      a {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  #frameden {
+    padding-bottom: 70px;
+    .frame-desc-main {
+      margin-top: 0;
+      .frame-slide-main {
+        .left {
+          bottom: 12px;
+          left: 32%;
+        }
+        .right {
+          bottom: 12px;
+          left: 50%;
+        }
+        .frame-slide {
+          transform: scale(1);
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  #gallery {
+    a {
+      width: auto;
+      .gal-short {
+        padding: 0;
+        object-fit: cover;
+      }
+      .gal-long {
+        object-fit: cover;
+      }
+    }
+  }
+
+  #gallery a .gal-short {
+    padding: 10px;
+    padding-top: 0;
+  }
+
+  .friez-slide-main {
+    position: relative;
+    .friez-icon {
+      position: absolute;
+      bottom: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      i {
+        font-size: 25px;
+        color: $white;
+        display: $dib;
+        margin: 0 20px;
+      }
+    }
+  }
+
+  #fuchs {
+    padding-bottom: 80px;
+    &:before {
+      width: 100%;
+      height: 350px;
+    }
+    &:after {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(to top, #fff, transparent);
+      top: 0;
+      right: 0%;
+    }
+    .fuchs-desc-main {
+      margin-top: 300px;
+    }
+  }
+
+  footer {
+    padding-top: 60px;
+    .footer-item {
+      text-align: center;
+      h4 {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  #cpryt {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  #unsere .unsere-box-main .unsere-box {
+    padding-top: 30px;
+  }
+  #family {
+    padding-top: 420px;
+  }
+  #plate {
+    padding-top: 295px;
+    padding-bottom: 393px;
+  }
+
+  element.style {
+    display: block;
+  }
+  #frameden .frame-desc-main .frame-slide-main .left {
+    bottom: 12px;
+    left: 38%;
+  }
+}
+
+// ===== Medium Devices Responsive Start =====
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body {
+    overflow-x: hidden;
+  }
+  header {
+    .toparea {
+      .logo {
+        transform: translate(-64px, -64px) scale(0.6);
+      }
+    }
+    &.sticky {
+      .toparea {
+        .logo {
+          transform: translate(-90px, -25px) scale(0.4);
+          height: 120px;
+        }
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-close {
+    top: 30px;
+    right: 30px;
+  }
+
+  header .toparea .humber .menu .menu-logo {
+    width: 100px;
+    top: 30px;
+    left: 30px;
+    img {
+      width: 100%;
+    }
+  }
+
+  header .toparea .humber .menu .menu-item {
+    top: 150px;
+    margin-right: 0;
+    li {
+      margin: 10px 0;
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+
+  header .toparea .humber .menu .menu-rest-info {
+    padding-right: 50px;
+  }
+
+  header .toparea .humber .menu .menu-item li a:before {
+    width: 20px;
+    left: -60px;
+  }
+
+  header .toparea .humber .menu .menu-item li a:hover:before {
+    left: -35px;
+  }
+
+  header .toparea .humber .menu .menu-item li a.active:before {
+    left: -35px;
+  }
+
+  #banner {
+    padding-top: 250px;
+    padding-bottom: 230px;
+    .banner-text {
+      span {
+        font-size: 36px;
+      }
+      h1 {
+        font-size: 54px;
+      }
+    }
+    .banner-shape {
+      width: 100%;
+      bottom: 30px;
+      transform: rotate(0deg);
+    }
+  }
+
+  #unsere {
+    &:before {
+      width: 100%;
+    }
+    .unsere-box-main {
+      width: 100%;
+      .unsere-box {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        top: 100%;
+        background: transparent;
+        box-shadow: none;
+        text-align: center;
+      }
+    }
+  }
+
+  #family {
+    padding-top: 540px;
+  }
+
+  #plate {
+    padding-top: 200px;
+    padding-bottom: 270px;
+    .plate-1 {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 30%;
+    }
+    .plate-2 {
+      position: absolute;
+      bottom: -100px;
+      right: 0;
+      width: 30%;
+    }
+    .plate-desc {
+      text-align: center;
+    }
+    .plate-btn {
+      width: 350px;
+      padding-left: 20px;
+      bottom: 195px;
+      .plate-btn-img {
+        display: $dfx;
+        align-items: center;
+      }
+      a {
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  #frameden {
+    padding-bottom: 70px;
+    .frame-desc-main {
+      margin-top: 0;
+      .frame-slide-main {
+        .left {
+          bottom: 12px;
+          left: 32%;
+        }
+        .right {
+          bottom: 12px;
+          left: 50%;
+        }
+        .frame-slide {
+          transform: scale(1);
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  #gallery {
+    a {
+      width: auto;
+      .gal-short {
+        padding: 0;
+        object-fit: cover;
+      }
+      .gal-long {
+        object-fit: cover;
+      }
+    }
+  }
+
+  #gallery a .gal-short {
+    padding: 10px;
+    padding-top: 0;
+  }
+
+  .friez-slide-main {
+    position: relative;
+    .friez-icon {
+      position: absolute;
+      bottom: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      i {
+        font-size: 25px;
+        color: $white;
+        display: $dib;
+        margin: 0 20px;
+      }
+    }
+  }
+
+  #fuchs {
+    padding-bottom: 80px;
+    &:before {
+      width: 100%;
+      height: 350px;
+    }
+    &:after {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(to top, #fff, transparent);
+      top: 0;
+      right: 0%;
+    }
+    .fuchs-desc-main {
+      margin-top: 300px;
+    }
+  }
+
+  footer {
+    padding-top: 60px;
+    .footer-item {
+      text-align: center;
+      h4 {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  #cpryt {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  #unsere .unsere-box-main .unsere-box {
+    padding-top: 30px;
+  }
+  #family {
+    padding-top: 420px;
+  }
+  #plate {
+    padding-top: 295px;
+    padding-bottom: 393px;
+  }
+  #frameden .frame-desc-main .frame-slide-main .left {
+    bottom: 12px;
+    left: 42%;
+  }
+}
+
+// ===== Large Devices Responsive Start =====
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  header .toparea .humber .menu .menu-rest-info {
+    padding-right: 50px;
+  }
+  header .toparea .humber .menu .menu-item {
+    right: 80px;
+  }
+  header .toparea .humber .menu .menu-item li a {
+    font-size: 24px;
+  }
+  #frameden .frame-desc-main .frame-slide-main {
+    margin-top: 40px;
+  }
+  #unsere .unsere-box-main .unsere-box {
+    left: 80%;
+  }
+  #frameden .frame-desc-main .frame-slide-main .frame-slide {
+    transform: scale(1);
+    margin-right: 0;
+  }
+
+  #frameden .frame-desc-main .frame-right {
+    padding: 30px 0;
+  }
+
+  #frameden .frame-desc-main .frame-slide-main .left {
+    bottom: 12px;
+    left: 11px;
+  }
+
+  #frameden .frame-desc-main .frame-slide-main .right {
+    bottom: 12px;
+    left: 51px;
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1920px) {
+  #banner {
+    padding-top: 448px;
+    padding-bottom: 470px;
+  }
+  #banner .banner-text span {
+    font-size: 85px;
+  }
+  #banner .banner-text h1 {
+    font-size: 96px;
+    line-height: 70px;
+  }
+  #plate {
+    padding-top: 415px;
+    padding-bottom: 415px;
+  }
+
+  #plate .plate-1 {
+    width: 30%;
+  }
+  #plate .plate-2 {
+    width: 30%;
+  }
+
+  #plate .plate-btn {
+    width: 670px;
+    bottom: 245px;
+    padding: 20px;
+    padding-left: 322px;
+  }
+
+  #gallery a .gal-long {
+    height: 440px;
+    object-fit: cover;
+  }
+  #gallery a .gal-short {
+    height: 220px;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1700px) {
+  #banner {
+    padding-top: 369px;
+    padding-bottom: 320px;
+  }
+}
+
+@media (min-width: 1921px) and (max-width: 2200px) {
+  #banner {
+    padding-top: 550px;
+    padding-bottom: 530px;
+  }
+  #unsere {
+    padding-top: 634px;
+    margin-top: -190px;
+  }
+  #unsere .unsere-box-main .unsere-box {
+    top: -652px;
+  }
+  #banner .banner-text span {
+    font-size: 85px;
+  }
+  #banner .banner-text h1 {
+    font-size: 90px;
+    line-height: 70px;
+  }
+  #plate {
+    padding-top: 494px;
+    padding-bottom: 536px;
+  }
+
+  #plate .plate-1 {
+    width: 30%;
+  }
+  #plate .plate-2 {
+    width: 30%;
+  }
+
+  #plate .plate-btn {
+    width: 870px;
+    bottom: 245px;
+    padding: 20px;
+    padding-left: 470px;
+  }
+
+  #gallery a .gal-long {
+    height: 480px;
+    object-fit: cover;
+  }
+  #gallery a .gal-short {
+    height: 240px;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 2200px) and (max-width: 2500px) {
+  #banner {
+    padding-top: 650px;
+    padding-bottom: 630px;
+  }
+  #unsere {
+    padding-top: 690px;
+    margin-top: -220px;
+  }
+  #unsere .unsere-box-main .unsere-box {
+    top: -680px;
+  }
+  #banner .banner-text span {
+    font-size: 85px;
+  }
+  #banner .banner-text h1 {
+    font-size: 90px;
+    line-height: 70px;
+  }
+  #plate {
+    padding-top: 600px;
+    padding-bottom: 650px;
+  }
+
+  #plate .plate-1 {
+    width: 30%;
+  }
+  #plate .plate-2 {
+    width: 30%;
+  }
+
+  #plate .plate-btn {
+    width: 870px;
+    bottom: 245px;
+    padding: 20px;
+    padding-left: 470px;
+  }
+
+  #gallery a .gal-long {
+    height: 480px;
+    object-fit: cover;
+  }
+  #gallery a .gal-short {
+    height: 240px;
+    object-fit: cover;
+  }
+}
